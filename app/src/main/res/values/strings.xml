@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Text recognition with Firebase</string>
+    <string name="take_picture_cloud">Cloud</string>
+    <string name="take_picture_device">Device</string>
+    <string name="recognized_text">Recognized text:</string>
+    <string name="recognition_meta_data">Meta data:</string>
+    <string name="choose_the_ocr_recognition_type">Choose the OCR recognition type</string>
+    <string name="metadata">Metadata:</string>
+</resources>
