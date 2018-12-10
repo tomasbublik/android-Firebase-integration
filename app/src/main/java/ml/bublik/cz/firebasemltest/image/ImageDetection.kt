@@ -1,4 +1,4 @@
-package ml.bublik.cz.firebasemltest
+package ml.bublik.cz.firebasemltest.image
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -22,8 +22,9 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata
 import com.google.firebase.ml.vision.text.FirebaseVisionText
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer
+import ml.bublik.cz.firebasemltest.activity.BaseActivity
 
-class ImageDetection(private val mCurrentPhotoPath: Uri?, private val activity: MainActivity, private val useCloud: Boolean) {
+class ImageDetection(private val mCurrentPhotoPath: Uri?, private val activity: BaseActivity, private val useCloud: Boolean) {
 
     companion object {
         private const val TAG = "ImageDetection"
@@ -55,6 +56,7 @@ class ImageDetection(private val mCurrentPhotoPath: Uri?, private val activity: 
                 }
                 .addOnFailureListener {
                     Log.e(TAG, "What is the exception: " + it.localizedMessage)
+                    sendFailure()
                 }
     }
 
@@ -150,6 +152,10 @@ class ImageDetection(private val mCurrentPhotoPath: Uri?, private val activity: 
         return -1
     }
 
+    private fun sendFailure() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private fun showTheResult(firebaseVisionText: FirebaseVisionText) {
         val resultText = firebaseVisionText.text
         Log.i(TAG, "What is the text: $resultText")
@@ -193,6 +199,6 @@ class ImageDetection(private val mCurrentPhotoPath: Uri?, private val activity: 
         }
 
         activity.stopProgressBar()
-        activity.persistAndShowResults(resultText, metaData.toString())
+        activity.persistAndShowResults(resultText, metaData.toString(), firebaseVisionText)
     }
 }

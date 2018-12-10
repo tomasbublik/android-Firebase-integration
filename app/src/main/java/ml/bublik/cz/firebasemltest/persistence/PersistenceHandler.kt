@@ -1,4 +1,4 @@
-package ml.bublik.cz.firebasemltest
+package ml.bublik.cz.firebasemltest.persistence
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,11 +13,9 @@ class PersistenceHandler {
         private const val RECOGNITION_COLLECTION_NAME = "recognitions"
     }
 
-    private lateinit var db: FirebaseFirestore
+    private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    /*private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    init {
+    /*init {
         val settings = FirebaseFirestoreSettings.Builder().setTimestampsInSnapshotsEnabled(true).build()
         db.firestoreSettings = settings
 

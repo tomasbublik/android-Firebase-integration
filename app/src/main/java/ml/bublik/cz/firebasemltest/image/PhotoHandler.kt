@@ -1,4 +1,4 @@
-package ml.bublik.cz.firebasemltest
+package ml.bublik.cz.firebasemltest.image
 
 import android.content.ContentValues
 import android.content.Intent
@@ -7,13 +7,13 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.util.Log
+import ml.bublik.cz.firebasemltest.activity.BaseActivity
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-class PhotoHandler(private val activity: MainActivity) {
+class PhotoHandler(private val activity: BaseActivity) {
 
     companion object {
         const val REQUEST_TAKE_PHOTO = 1
@@ -71,7 +71,7 @@ class PhotoHandler(private val activity: MainActivity) {
                     )
                     fileWithPhoto = it
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                    activity.startActivityForResult(takePictureIntent, Companion.REQUEST_TAKE_PHOTO)
+                    activity.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
                 }
             }
         }

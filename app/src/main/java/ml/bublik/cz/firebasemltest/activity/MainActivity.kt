@@ -1,4 +1,4 @@
-package ml.bublik.cz.firebasemltest
+package ml.bublik.cz.firebasemltest.activity
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -7,66 +7,47 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AppCompatActivity
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View
+import com.google.firebase.ml.vision.text.FirebaseVisionText
 import kotlinx.android.synthetic.main.activity_main.*
+import ml.bublik.cz.firebasemltest.R
+import ml.bublik.cz.firebasemltest.persistence.PersistenceHandler
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    private lateinit var imageDetection: ImageDetection
-    private lateinit var photoHandler: PhotoHandler
+    companion object {
+        private const val TAG: String = "MainActivity"
+    }
+
     private lateinit var persistenceHandler: PersistenceHandler
-    private var useCloud: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         stopProgressBar()
         verifyStoragePermissions(this)
-        photoHandler = PhotoHandler(this)
         persistenceHandler = PersistenceHandler()
 
         cloudButton.setOnClickListener {
             startCamera()
+            useCloud = true
         }
         deviceButton.setOnClickListener {
             startCamera()
             useCloud = false
         }
-    }
-
-    private fun startCamera() {
-        resultTextView.text = ""
-        recognitionMetaDataView.text = ""
-        photoHandler.dispatchTakePictureIntent()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == PhotoHandler.REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
-            //Log.i(TAG, "What is the file name and size?: " + photoHandler.fileWithPhoto.path + " " + photoHandler.fileWithPhoto.length())
-            //imageDetection = ImageDetection(Uri.fromFile(photoHandler.fileWithPhoto), this, useCloud)
-            startProgressBar()
-            imageDetection = ImageDetection(photoHandler.imageUri, this, useCloud)
-            imageDetection.activateVision()
+        receiptOcrButton.setOnClickListener {
+            val intent = Intent(this, ReceiptOcrActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
         }
     }
 
-    fun persistAndShowResults(text: String, metaData: String) {
-        metadataTextView.visibility = VISIBLE
-        resultTextView.text = text
-        recognitionMetaDataView.text = metaData
-
-        //persistenceHandler.storeData(text, metaData)
-    }
-
-    fun startProgressBar() {
-        progressBar.visibility = VISIBLE
-    }
-
-    fun stopProgressBar() {
-        progressBar.visibility = INVISIBLE
+    override fun startCamera() {
+        resultTextView.text = ""
+        recognitionMetaDataView.text = ""
+        photoHandler.dispatchTakePictureIntent()
     }
 
     // Storage Permissions
@@ -94,7 +75,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val TAG: String = "MainActivity"
+    override fun persistAndShowResults(text: String, metaData: String, firebaseVisionText: FirebaseVisionText) {
+        metadataTextView.visibility = View.VISIBLE
+        resultTextView.text = text
+        recognitionMetaDataView.text = metaData
+
+        //persistenceHandler.storeData(text, metaData)
+    }
+
+    override fun stopProgressBar() {
+        progressBar.visibility = View.INVISIBLE
+    }
+
+    override fun startProgressBar() {
+        progressBar.visibility = View.VISIBLE
     }
 }
