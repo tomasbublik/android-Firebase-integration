@@ -8,13 +8,14 @@
     tools:context=".activity.ReceiptOcrActivity"
     tools:showIn="@layout/activity_receipt_ocr">
 
-    <Button
+    <ImageView
         android:id="@+id/cameraActivationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/camera"
+        android:contentDescription="@string/camera_activation"
+        android:src="@drawable/ic_camera_alt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -67,59 +68,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
-    <Button
-        android:id="@+id/fragmentTestButton"
-        android:layout_width="134dp"
-        android:layout_height="54dp"
+    <ImageView
+        android:id="@+id/pickupButton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Activate Test Fragment"
-        app:layout_anchor="@+id/include"
+        android:contentDescription="@string/activate_text_pick_up"
+        android:src="@drawable/ic_textsms_grey"
         app:layout_anchorGravity="bottom|center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <SearchView
+    <ImageView
         android:id="@+id/nameSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:contentDescription="@string/icon_to_show_the_selection_app"
         android:focusable="true"
+        android:src="@drawable/ic_search"
         app:layout_constraintBottom_toTopOf="@+id/addressEditText"
         app:layout_constraintStart_toEndOf="@+id/nameEditText" />
 
-    <SearchView
+    <ImageView
         android:id="@+id/addressSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/icon_to_show_the_selection_app"
+        android:focusable="true"
+        android:src="@drawable/ic_search"
         app:layout_constraintBottom_toTopOf="@+id/dateEditText"
         app:layout_constraintStart_toEndOf="@+id/addressEditText" />
 
-    <SearchView
+    <ImageView
         android:id="@+id/dateSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:contentDescription="@string/icon_to_show_the_selection_app"
         android:focusable="true"
+        android:src="@drawable/ic_search"
         app:layout_constraintBottom_toTopOf="@+id/amountEditText"
         app:layout_constraintStart_toEndOf="@+id/dateEditText" />
 
-    <SearchView
+    <ImageView
         android:id="@+id/amountSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
+        android:contentDescription="@string/icon_to_show_the_selection_app"
         android:focusable="true"
+        android:src="@drawable/ic_search"
         app:layout_constraintStart_toEndOf="@+id/amountEditText"
         app:layout_constraintTop_toBottomOf="@+id/dateEditText" />
 

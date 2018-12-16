@@ -198,7 +198,7 @@ class ImageDetection(private val mCurrentPhotoPath: Uri?, private val activity: 
             Log.i(TAG, "Meta data: $metaData")
         }
 
-        activity.stopProgressBar()
+        activity.stopProgressBar(true)
         activity.persistAndShowResults(resultText, metaData.toString(), firebaseVisionText)
     }
 }

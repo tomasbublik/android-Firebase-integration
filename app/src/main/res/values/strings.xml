@@ -13,4 +13,10 @@
     <string name="date">Date</string>
     <string name="total_amount">Total amount</string>
     <string name="address">Address</string>
+    <string name="pick_up_text">Pick up text</string>
+    <string name="icon_to_show_the_selection_app">Icon to show the selection app</string>
+    <string name="cancel_choice">Cancel choice</string>
+    <string name="confirm_choice">Confirm choice</string>
+    <string name="camera_activation">Camera activation</string>
+    <string name="activate_text_pick_up">Activate text pick up</string>
 </resources>

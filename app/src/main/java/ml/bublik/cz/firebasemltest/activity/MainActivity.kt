@@ -25,7 +25,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        stopProgressBar()
+        stopProgressBar(false)
         verifyStoragePermissions(this)
         persistenceHandler = PersistenceHandler()
 
@@ -83,7 +83,7 @@ class MainActivity : BaseActivity() {
         //persistenceHandler.storeData(text, metaData)
     }
 
-    override fun stopProgressBar() {
+    override fun stopProgressBar(afterAction: Boolean) {
         progressBar.visibility = View.INVISIBLE
     }
 

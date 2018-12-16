@@ -27,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun startProgressBar()
 
-    abstract fun stopProgressBar()
+    abstract fun stopProgressBar(afterAction: Boolean)
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == PhotoHandler.REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {

@@ -11,6 +11,7 @@ import ml.bublik.cz.firebasemltest.fragment.TextPicker.Companion.newInstance
 import ml.bublik.cz.firebasemltest.model.DetectedTextLine
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.toast
 
 class ReceiptOcrActivity : BaseActivity(), AnkoLogger {
 
@@ -44,28 +45,19 @@ class ReceiptOcrActivity : BaseActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receipt_ocr)
         setSupportActionBar(toolbar)
-        stopProgressBar()
+        stopProgressBar(false)
 
         cameraActivationButton.setOnClickListener {
             startCamera()
             useCloud = false
         }
-        fragmentTestButton.setOnClickListener {
+        pickupButton.setOnClickListener {
             startThePickerFragment(detectedLinesOfText, NAME)
         }
         nameSearch.setOnClickListener { startThePickerFragment(detectedLinesOfText, NAME) }
         addressSearch.setOnClickListener { startThePickerFragment(detectedLinesOfText, ADDRESS) }
         dateSearch.setOnClickListener { startThePickerFragment(detectedLinesOfText, DATE) }
         amountSearch.setOnClickListener { startThePickerFragment(detectedLinesOfText, AMOUNT) }
-
-        nameSearch.inputType = 0x00000000
-        nameSearch.setIconifiedByDefault(false)
-        dateSearch.inputType = 0x00000000
-        dateSearch.setIconifiedByDefault(false)
-        amountSearch.inputType = 0x00000000
-        amountSearch.setIconifiedByDefault(false)
-        addressSearch.inputType = 0x00000000
-        addressSearch.setIconifiedByDefault(false)
     }
 
     override fun startCamera() {
@@ -83,11 +75,15 @@ class ReceiptOcrActivity : BaseActivity(), AnkoLogger {
     }
 
     override fun startProgressBar() {
-        ocrProgressBar.visibility = View.INVISIBLE
+        ocrProgressBar.visibility = View.VISIBLE
     }
 
-    override fun stopProgressBar() {
+    override fun stopProgressBar(afterAction: Boolean) {
         ocrProgressBar.visibility = View.INVISIBLE
+        if (afterAction) {
+            pickupButton.setImageDrawable(resources.getDrawable(R.drawable.ic_textsms, applicationContext.theme))
+            toast("OCR done, please pick up the detected text")
+        }
     }
 
     private fun startThePickerFragment(detectedLines: List<DetectedTextLine>, typeofData: TypeofData) {
@@ -104,7 +100,7 @@ class ReceiptOcrActivity : BaseActivity(), AnkoLogger {
         when (typeofData) {
             NAME -> nameEditText.setText(returnedText)
             ADDRESS -> addressEditText.setText(returnedText)
-            DATE -> addressEditText.setText(returnedText)
+            DATE -> dateEditText.setText(returnedText)
             AMOUNT -> amountEditText.setText(returnedText)
         }
     }
