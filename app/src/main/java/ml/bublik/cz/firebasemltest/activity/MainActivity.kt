@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ml.bublik.cz.firebasemltest.R
 import ml.bublik.cz.firebasemltest.persistence.PersistenceHandler
 
-
 class MainActivity : BaseActivity() {
 
     companion object {
@@ -39,6 +38,11 @@ class MainActivity : BaseActivity() {
         }
         receiptOcrButton.setOnClickListener {
             val intent = Intent(this, ReceiptOcrActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+        }
+        amountOcrButton.setOnClickListener {
+            val intent = Intent(this, AmountOcrActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
         }
@@ -68,9 +72,9 @@ class MainActivity : BaseActivity() {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
+                activity,
+                PERMISSIONS_STORAGE,
+                REQUEST_EXTERNAL_STORAGE
             )
         }
     }
