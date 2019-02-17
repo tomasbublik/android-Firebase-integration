@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ml.bublik.cz.firebasemltest">
+          package="ml.bublik.cz.firebasemltest">
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
+  <uses-feature android:name="android.hardware.camera" />
+  <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.CAMERA" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="ml.bublik.cz.firebasemltest"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+  <application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:largeHeap="true"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <provider
+      android:authorities="ml.bublik.cz.firebasemltest"
+      android:exported="false"
+      android:grantUriPermissions="true"
+      android:name="android.support.v4.content.FileProvider">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+    </provider>
 
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="ocr" />
+    <meta-data
+      android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+      android:value="ocr"/>
 
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <activity android:name=".activity.MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.ReceiptOcrActivity"
-            android:label="@string/title_activity_receipt_ocr"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-    </application>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+      android:label="@string/title_activity_receipt_ocr"
+      android:name=".activity.ReceiptOcrActivity"
+      android:theme="@style/AppTheme.NoActionBar"></activity>
+    <activity
+      android:label="@string/title_activity_amount_ocr"
+      android:name=".activity.AmountOcrActivity"
+      android:theme="@style/AppTheme.NoActionBar"></activity>
 
+    <activity android:name=".activity.LiveAmountOcrActivity" android:exported="true"/>
+  </application>
 </manifest>

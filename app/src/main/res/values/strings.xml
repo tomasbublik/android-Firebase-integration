@@ -8,6 +8,7 @@
     <string name="metadata">Metadata:</string>
     <string name="receipt_ocr">Receipt OCR</string>
     <string name="title_activity_receipt_ocr">ReceiptOcrActivity</string>
+    <string name="title_activity_amount_ocr">AmountOcrActivity</string>
     <string name="camera">Camera</string>
     <string name="name">Name</string>
     <string name="date">Date</string>
@@ -19,4 +20,7 @@
     <string name="confirm_choice">Confirm choice</string>
     <string name="camera_activation">Camera activation</string>
     <string name="activate_text_pick_up">Activate text pick up</string>
+  <string name="amount_ocr">Amount OCR</string>
+    <string name="amount">Amount</string>
+  <string name="ok">OK</string>
 </resources>

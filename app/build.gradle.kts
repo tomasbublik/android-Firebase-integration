@@ -49,7 +49,6 @@ dependencies {
     implementation("com.google.firebase:firebase-ml-vision:18.0.2")
     implementation("com.google.firebase:firebase-firestore:17.1.4")
     implementation("org.jetbrains.anko:anko-commons:0.10.8")
-    implementation("org.jetbrains.anko:anko-commons:0.10.8")
     implementation("android.arch.lifecycle:extensions:1.1.1")
 
     testImplementation("junit:junit:4.12")
